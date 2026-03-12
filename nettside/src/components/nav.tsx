@@ -13,7 +13,7 @@ export default function Nav(props: any) {
     }, [props.location]);
 
     return(
-        <div className="bg-[#E8E8E8] w-[20%] h-[87vh] hidden sm:block -z-1">
+        <div className="bg-[#E8E8E8] w-1/1 h-[87vh] hidden sm:block -z-1">
             <a href="/">
                 <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF] active:bg-[#CFCFCF] ${activeBg ? activeBg.dashboard : ''}`}>
                     Dashboard
