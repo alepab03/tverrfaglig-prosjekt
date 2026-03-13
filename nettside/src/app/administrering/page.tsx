@@ -47,7 +47,7 @@ export default function Administrering() {
             </div>
             {/* pop up */}
             <div className={`background-popup ${isOpen ? 'open' : ''} `}>
-                <div className="bg-white w-[30%] h-[35vh] rounded-[0.313rem] flex flex-col items-center justify-center">
+                <div className="bg-white w-[90%] sm:w-[30%] sm:h-[35vh] rounded-[0.313rem] flex flex-col items-center justify-center">
                     <h3 className="font-bold mt-2 mb-4">Rediger adgangskort</h3>
                     <form method="POST"> {/* vet ikke hvor nødvendig "method='POST'" er til vanlig når vi får inn funksjonalitet men bruker den nå får å hindre att info dukker opp i URL, er ikke ett stort problem siden ingen kommer til å se det men plager meg litt */}
                         <div>
@@ -61,7 +61,7 @@ export default function Administrering() {
                         <div className="mt-2">
                             <label htmlFor="code" className="font-bold">Kode:</label>
                             <input type={inputType} name="code" id="code" value={formValues.code} onChange={handleInputValueChange} className="border ml-2 mr-2 rounded-[0.313rem] pl-2" />
-                            <button onClick={handleInputTypeToggle} className="font-bold cursor-pointer border rounded-[0.313rem] pl-1 pr-1 hover:bg-[#E8E8E8]">{inputTypeToggle ? "Se kode" : "Skjul kode"}</button>
+                            <button onClick={handleInputTypeToggle} className="text-[12px] font-bold cursor-pointer border rounded-[0.313rem] pl-1 pr-1 hover:bg-[#E8E8E8]">{inputTypeToggle ? "Se kode" : "Skjul kode"}</button>
                         </div>
                         <div className="mt-2 mb-4">
                             <label htmlFor="access" className="font-bold">Tilgang:</label>
@@ -82,7 +82,7 @@ export default function Administrering() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Kortnummer</th>
+                            <th>Kort nr.</th> 
                             <th>Eier</th>
                             <th>Kode</th>
                             <th>Tilgang</th>
@@ -116,7 +116,7 @@ export default function Administrering() {
                                 <tr key={index}>
                                     <td>{data.id}</td>{/* Kortnummer */}
                                     <td>{data.name}</td>{/* Eier | \/ kode */}
-                                    <td><input type={type} value={data.code} readOnly className="w-12 outline-0" /><button onClick={handleTypeToggle} className="font-bold cursor-pointer border rounded-[0.313rem] pl-1 pr-1 hover:bg-[#E8E8E8]">{typeToggle ? "Se kode" : "Skjul kode"}</button></td>
+                                    <td><input type={type} value={data.code} readOnly className="w-10 outline-0" /><button onClick={handleTypeToggle} className="font-bold cursor-pointer border rounded-[0.313rem] pl-1 pr-1 text-[12px] hover:bg-[#E8E8E8]">{typeToggle ? "Se kode" : "Skjul kode"}</button></td>
                                     <td>{access}</td>{/* Tilgang */}
                                     <td><Button color={0} title="Rediger" onClick={() => handlePopUpOpen(index)} /></td>
                                 </tr>

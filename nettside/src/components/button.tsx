@@ -11,7 +11,7 @@ export default function Button(props: any) {
     return(
         <div>
             <a href={props.url}>
-                <button onClick={props.onClick} className={`pl-8 pr-8 pt-2.5 pb-2.5 ${btnColor} rounded-[0.313rem] cursor-pointer`}> {/* Er det mulig å gjøre sånn og omitte når man ikke trenger?? jeg vet ikke */}
+                <button onClick={props.onClick} className={`pl-2 pr-2 sm:pl-8 sm:pr-8 pt-2.5 pb-2.5 ${btnColor} rounded-[0.313rem] cursor-pointer`}> {/* Er det mulig å gjøre sånn og omitte når man ikke trenger?? jeg vet ikke */}
                     <p className="font-bold text-white">{props.title}</p>
                 </button>
             </a>

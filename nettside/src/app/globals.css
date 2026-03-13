@@ -71,7 +71,7 @@ p {
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 th {
   text-align: left;
@@ -107,4 +107,12 @@ th {
     --h1: 48px;
   }
 
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: .5rem;
+  }
+  th {
+    text-align: left;
+  }
 }
