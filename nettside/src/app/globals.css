@@ -67,6 +67,35 @@ p {
 .header {
   z-index: 999;
 }
+/* table */
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: .5rem;
+}
+th {
+  text-align: left;
+}
+/* pop up */
+.background-popup {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.background-popup.open {
+  opacity: 1;
+  z-index: 999;
+}
 
 @media screen and (min-width: 600px) {
 
