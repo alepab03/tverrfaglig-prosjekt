@@ -49,7 +49,7 @@ export default function Administrering() {
             <div className={`background-popup ${isOpen ? 'open' : ''} `}>
                 <div className="bg-white w-[30%] h-[35vh] rounded-[0.313rem] flex flex-col items-center justify-center">
                     <h3 className="font-bold mt-2 mb-4">Rediger adgangskort</h3>
-                    <form>
+                    <form method="POST"> {/* vet ikke hvor nødvendig "method='POST'" er til vanlig når vi får inn funksjonalitet men bruker den nå får å hindre att info dukker opp i URL, er ikke ett stort problem siden ingen kommer til å se det men plager meg litt */}
                         <div>
                             <label htmlFor="id" className="font-bold">Kortnummer:</label>
                             <input type="text" name="id" id="id" readOnly value={cardData[selected].id} className="outline-0 rounded-[0.313rem] pl-2"/>
