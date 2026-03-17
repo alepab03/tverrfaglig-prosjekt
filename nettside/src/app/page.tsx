@@ -17,8 +17,6 @@ export default function Home() {
   const filterList = (searchTerm: any) => {
     searchTerm = searchTerm.toLowerCase();
     tableRowRefs.current.forEach((row) => {
-
-      let category = '';
       if (row?.children) {
         let date = row.children[0].innerHTML.toLowerCase();
         let time = row.children[1].innerHTML.toLowerCase();
