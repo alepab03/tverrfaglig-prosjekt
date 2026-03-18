@@ -67,24 +67,24 @@ export default function Home() {
       <div className="col-span-1 row-span-1">
         <Nav location='dashboard' />
       </div>
-      <div className="col-span-3 flex flex-col items-center sm:ml-10 mt-10 sm:mr-10"> 
+      <div className="sm:col-span-3 col-span-5 flex flex-col items-center sm:ml-10 mt-10 sm:mr-10"> 
         <h2 className="font-bold mb-2">Adgangs logg</h2>
-        <div className="flex flex-row">
-          <select name="category" id="category" value={categoryValue} onChange={(e) => setCategoryValue(e.target.value)} className=" border-t border-l pr-1 pl-2">
+        <div className="flex flex-row w-[90vw] sm:w-[40vw]">
+          <select name="category" id="category" value={categoryValue} onChange={(e) => setCategoryValue(e.target.value)} className="font-bold border-t border-l pr-1 pl-1 w-[19.9%]">
             <option value="date">Dato</option>
             <option value="time">Tidspunkt</option>
             <option value="card">Kort nr.</option>
             <option value="name">Eier</option>
           </select>
-          <input type="text" placeholder='Søk her...' value={searchValue} onChange={(e) => {filterList(e.target.value); setSearchValue(e.target.value);}} className="border-l border-r border-t p-1 pl-2" />
+          <input type="text" placeholder='Søk her...' value={searchValue} onChange={(e) => {filterList(e.target.value); setSearchValue(e.target.value);}} className="border-l border-r border-t p-1 pl-2 w-[80.1%]" />
         </div>
         {/* tabell */}
-        <table>
+        <table className="log-table">
           <thead>
             <tr>
-              <th>Dato</th>
-              <th>Tidspunkt</th>
-              <th>Kort nr.</th>
+              <th className="log-table-col-1">Dato</th>
+              <th className="log-table-col-2">Tidspunkt</th>
+              <th className="log-table-col-3">Kort nr.</th>
               <th>Eier</th>
             </tr>
           </thead>

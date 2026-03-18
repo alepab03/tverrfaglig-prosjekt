@@ -76,6 +76,18 @@ table, th, td {
 th {
   text-align: left;
 }
+.log-table {
+  width: 90vw;
+}
+.log-table-col-1 {
+  width: 32%;
+}
+.log-table-col-2 {
+  width: 15%;
+}
+.log-table-col-3 {
+  width: 10%;
+}
 /* pop up */
 .background-popup {
   background-color: rgba(0, 0, 0, 0.3);
@@ -114,5 +126,17 @@ th {
   }
   th {
     text-align: left;
+  }
+  .log-table {
+    width: 40vw;
+  }
+  .log-table-col-1 {
+    width: 20%;
+  }
+  .log-table-col-2 {
+    width: 17%;
+  }
+  .log-table-col-3 {
+    width: 13%;
   }
 }
