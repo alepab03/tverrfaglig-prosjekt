@@ -1,137 +1,115 @@
 "use client";
+import { useState } from "react";
 
-import React, { useState } from "react";
+// Gjenbrukbar input-komponent i samme stil
+let InputField = ({ type, placeholder }: { type: string; placeholder: string }) => (
+  <input
+    type={type}
+    placeholder={placeholder}
+    className={`
+      border border-slate-300 rounded-full px-4 py-2 text-sm
+      focus:border-(--green) focus:ring-2 focus:ring-(--green) focus:outline-none
+      transition
+    `}
+  />
+);
 
-const DiprellaAuth: React.FC = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
+export default function Reg() {
+  let [isSignIn, setIsSignIn] = useState<boolean>(true);
+
+  // Skjema-handlere
+  let handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Logg inn sendt!");
+  };
+
+  let handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Registrering sendt!");
+  };
+
+  // Dynamisk innhold for desktop-panelet
+  let logIn = (<div>
+      <h2 style={{ fontWeight: 700 }}>Ingen konto?</h2>
+      <p className="text-sm text-left mb-8 text-(--background)">
+        For å holde kontakten, registrer deg her med informasjonen din!
+      </p>
+      <button
+        onClick={() => setIsSignIn(true)} className="border border-(--background) bg-none text-(--background) rounded-full px-10 py-2 text-sm font-semibold hover:bg-white hover:text-(--green) transition">
+        REGISTRER DEG
+      </button>
+    </div> );
+  
+  let signUp = (<div>
+      <h2 style={{ fontWeight: 700 }}>Har allerede konto?</h2>
+      <p className="text-sm text-left mb-8 text-(--background)">
+        Logg inn her!
+      </p>
+      <button
+        onClick={() => setIsSignIn(false)} className="border border-(--background) bg-none text-(--background) rounded-full px-10 py-2 text-sm font-semibold hover:bg-white hover:text-(--green) transition">
+        LOGG INN
+      </button>
+    </div>);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-slate-100">
-      <div className="relative w-full h-screen bg-white rounded-2xl shadow-xl overflow-hidden">
-        
-        {/* GRID: Sign In (left) + Sign Up (right) */}
-        <div className="grid grid-cols-2 h-full">
-          
-          {/* LEFT: SIGN IN */}
-          <div className="flex flex-col items-center justify-center p-10">
-            <h2 className="text-3xl font-bold text-emerald-600 mb-4">
-              Sign in to Diprella
-            </h2>
+    <div
+      className="h-screen w-screen flex items-center justify-center bg-(--background) text-(--foreground)">
+      <div className="relative w-full h-full rounded-2xl shadow-xl overflow-hidden md:grid md:grid-cols-2">
 
-            <div className="flex gap-4 mb-4">
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">f</button>
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">G+</button>
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">in</button>
-            </div>
-
-            <p className="text-xs text-slate-500 mb-6">or use your email account:</p>
-
-            <form className="w-full max-w-sm flex flex-col gap-3">
-              <input
-                type="email"
-                placeholder="Email"
-                className="border border-slate-300 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-400"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="border border-slate-300 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-400"
-              />
-
-              <a className="text-xs text-emerald-600 text-right cursor-pointer hover:underline">
-                Forgot your password?
-              </a>
-
-              <button
-                type="submit"
-                className="mt-4 bg-emerald-600 text-white rounded-full py-2 text-sm font-semibold hover:bg-emerald-700 transition"
-              >
-                SIGN IN
-              </button>
-            </form>
-          </div>
-
-          {/* RIGHT: SIGN UP */}
-          <div className="flex flex-col items-center justify-center p-10">
-            <h2 className="text-3xl font-bold text-emerald-600 mb-4">
-              Create Account
-            </h2>
-
-            <div className="flex gap-4 mb-4">
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">f</button>
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">G+</button>
-              <button className="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500">in</button>
-            </div>
-
-            <p className="text-xs text-slate-500 mb-6">or use your email for registration:</p>
-
-            <form className="w-full max-w-sm flex flex-col gap-3">
-              <input
-                type="text"
-                placeholder="Name"
-                className="border border-slate-300 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-400"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="border border-slate-300 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-400"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="border border-slate-300 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-400"
-              />
-
-              <button
-                type="submit"
-                className="mt-4 bg-emerald-600 text-white rounded-full py-2 text-sm font-semibold hover:bg-emerald-700 transition"
-              >
-                SIGN UP
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* GREEN SLIDING PANEL */}
-        <div
-          className={`
-            absolute top-0 w-1/2 h-full bg-emerald-600 text-white 
-            flex flex-col items-center justify-center p-10
-            transition-transform duration-700 ease-in-out
-            ${isSignIn ? "translate-x-0" : "translate-x-full"}
-          `}
+        {/* Venstre / høyre innhold */}
+        <div className={`flex flex-col items-center justify-center p-10 transition-all duration-500
+          ${isSignIn ? "block" : "hidden md:flex"}`}
         >
-          {isSignIn ? (
-            <>
-              <h2 className="text-3xl font-bold mb-4">Hello, Friend!</h2>
-              <p className="text-sm text-center mb-8">
-                Enter your personal details and start your journey with us
-              </p>
-              <button
-                onClick={() => setIsSignIn(false)}
-                className="border border-white rounded-full px-10 py-2 text-sm font-semibold hover:bg-white hover:text-emerald-600 transition"
-              >
-                SIGN UP
-              </button>
-            </>
-          ) : (
-            <>
-              <h2 className="text-3xl font-bold mb-4">Welcome Back!</h2>
-              <p className="text-sm text-center mb-8">
-                To keep connected with us please login with your personal info
-              </p>
-              <button
-                onClick={() => setIsSignIn(true)}
-                className="border border-white rounded-full px-10 py-2 text-sm font-semibold hover:bg-white hover:text-emerald-600 transition"
-              >
-                SIGN IN
-              </button>
-            </>
-          )}
+          <h2 className="font-bold mb-6 text-2xl text-(--green)">
+            Logg inn
+          </h2>
+          <form onSubmit={handleSignIn} className="w-full max-w-sm flex flex-col gap-4">
+            <InputField type="email" placeholder="E-post" />
+            <InputField type="password" placeholder="Passord" />
+            <a className="text-xs text-right cursor-pointer hover:underline text-(--green)">
+              Glemt passordet?
+            </a>
+            <button type="submit" className="mt-4 bg-(--green) text-white rounded-full py-2 text-sm font-semibold hover:opacity-90 transition">
+              LOGG INN
+            </button>
+          </form>
         </div>
+
+        <div className={`flex flex-col items-center justify-center p-10 transition-all duration-500
+          ${!isSignIn ? "block" : "hidden md:flex"}`}
+        >
+          <h2 className="font-bold mb-6 text-2xl text-(--green)">
+            Opprett konto
+          </h2>
+          <form onSubmit={handleRegister} className="w-full max-w-sm flex flex-col gap-4">
+            <InputField type="text" placeholder="Navn" />
+            <InputField type="email" placeholder="E-post" />
+            <InputField type="password" placeholder="Passord" />
+            <button type="submit" className="mt-4 bg-(--green) text-white rounded-full py-2 text-sm font-semibold hover:opacity-90 transition">
+              REGISTRER DEG
+            </button>
+          </form>
+        </div>
+
+        {/* Desktop: grønt slide-panel */}
+        <div
+          className={`hidden md:flex absolute top-0 bg-(--green) text-(--background) left-0 w-1/2 h-full flex-col items-center justify-center p-10
+          transition-transform duration-700 ease-in-out ${isSignIn ? "translate-x-0" : "translate-x-full"}`}>
+          {isSignIn ? signUp : logIn}
+        </div>
+
+        {/* Mobil knapp */}
+        <button className="md:hidden absolute top-1/2 -translate-y-1/2 p-4 text-white rounded-full shadow-lg"
+          style={{
+            backgroundColor: "var(--green)",
+            right: isSignIn ? "10px" : "auto",
+            left: !isSignIn ? "10px" : "auto"
+          }}
+          onClick={() => setIsSignIn(!isSignIn)}
+        >
+          {isSignIn ? "→" : "←"}
+        </button>
       </div>
     </div>
   );
-};
-
-export default DiprellaAuth;
+}

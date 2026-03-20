@@ -19,9 +19,14 @@ export default function Nav(props: any) {
                     Dashboard
                 </h3>
             </a>
-            <a href="/administrering">
+            <a href="/kort-administrering">
                 <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF]   active:bg-[#CFCFCF] ${activeBg ? activeBg.adgangskontroll : ''}`}>
                     Adgangskontroll
+                </h3>
+            </a>
+            <a href="/bruker-administrering">
+                <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF]   active:bg-[#CFCFCF] ${activeBg ? activeBg.adgangskontroll : ''}`}>
+                    Brukeradministrering
                 </h3>
             </a>
         </div>

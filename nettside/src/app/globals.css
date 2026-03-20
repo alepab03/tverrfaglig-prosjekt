@@ -67,7 +67,7 @@ p {
 .header {
   z-index: 999;
 }
-/* table */
+/* tables */
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -75,6 +75,33 @@ table, th, td {
 }
 th {
   text-align: left;
+}
+.log-table {
+  width: 90vw;
+}
+.log-table-col-1 {
+  width: 32%;
+}
+.log-table-col-2 {
+  width: 15%;
+}
+.log-table-col-3 {
+  width: 10%;
+}
+.card-table {
+  width: 90vw;
+}
+.card-table-col-1 {
+  width: 13%;
+}
+.card-table-col-2 {
+  width: 25%;
+}
+.card-table-col-3 {
+  width: 10%;
+}
+.card-table-col-4 {
+  width: 15%;
 }
 /* pop up */
 .background-popup {
@@ -107,6 +134,7 @@ th {
     --h1: 48px;
   }
 
+  /* tables */
   table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -114,5 +142,32 @@ th {
   }
   th {
     text-align: left;
+  }
+  .log-table {
+    width: 40vw;
+  }
+  .log-table-col-1 {
+    width: 20%;
+  }
+  .log-table-col-2 {
+    width: 17%;
+  }
+  .log-table-col-3 {
+    width: 13%;
+  }
+  .card-table {
+  width: 40vw;
+  }
+  .card-table-col-1 {
+    width: 13%;
+  }
+  .card-table-col-2 {
+    width: 22%;
+  }
+  .card-table-col-3 {
+    width: 10%;
+  }
+  .card-table-col-4 {
+    width: 20%;
   }
 }

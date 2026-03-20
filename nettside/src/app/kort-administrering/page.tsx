@@ -79,14 +79,14 @@ export default function Administrering() {
             </div>
             {/* tabell */}
             <div className="col-span-3 flex flex-col items-center mt-10">
-                <table>
+                <table className="card-table">
                     <thead>
                         <tr>
-                            <th>Kort nr.</th> 
-                            <th>Eier</th>
-                            <th>Kode</th>
-                            <th>Tilgang</th>
-                            <th></th>
+                            <th className="card-table-col-1">Kort nr.</th> 
+                            <th className="">Eier</th>
+                            <th className="card-table-col-2">Kode</th>
+                            <th className="card-table-col-3">Tilgang</th>
+                            <th className="card-table-col-4"></th>
                         </tr>
                     </thead>
                     <tbody>                       
