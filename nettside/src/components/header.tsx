@@ -10,13 +10,17 @@ export default function Header() {
 
     return(
         <>
-            <div className="bg-(--green) w-1/1 h-15 sm:h-[13vh] flex flex-row items-center justify-between">
-                <a href="/"><h1 className="text-white font-bold ml-10">Tittel</h1></a> {/* midlertidig navn */}
-                {/* hamburger icon */}
-                <div className={`inline-block mr-9 sm:hidden ${isActive ? 'change' : ''}`} onClick={handleNavToggle}> 
-                    <div className="bar1 bg-white"></div>
-                    <div className="bar2 bg-white"></div>
-                    <div className="bar3 bg-white"></div>
+            <div className="bg-(--green) w-1/1 h-15 sm:h-[13vh] flex flex-row items-center justify-between px-4">
+  
+                <div className="flex items-center gap-3">
+                    <img src="/bilder/hamar-katedralskole.svg" alt="Logo" className="h-10" />
+                    <a href="/"><h1 className="text-white font-bold ml-10">Tittel</h1></a> {/* midlertidig navn */}
+                    {/* hamburger icon */}
+                    <div className={`inline-block mr-9 sm:hidden ${isActive ? 'change' : ''}`} onClick={handleNavToggle}> 
+                        <div className="bar1 bg-white"></div>
+                        <div className="bar2 bg-white"></div>
+                        <div className="bar3 bg-white"></div>
+                    </div>
                 </div>
             </div>
             {/* dropdown menu (midlertidige navn og linker) */}
