@@ -28,8 +28,11 @@ export default function Header() {
                 <a href="/">
                     <h3 className="font-semibold hover:bg-[#CFCFCF] border-b border-black">Dashboard</h3>
                 </a>
-                <a href="/administrering">
+                <a href="/kort-administrering">
                     <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-black">Adgangskontroll</h3>
+                </a>
+                <a href="/bruker-administrering">
+                    <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-black">Brukeradministrering</h3>
                 </a>
             </div>
         </>
