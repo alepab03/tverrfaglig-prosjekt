@@ -7,3 +7,6 @@ export async function POST(req:Request){
         database: process.env.DATABASE,
         password: process.env.PASSWORD,
     });}
+
+     try{
+        const [results]: [ResultSetHeader, any] = await connection.execute("INSERT IGNORE INTO userInfo (USER, PASSWORD) VALUES(?,?)", [USER, PASSWORD])
