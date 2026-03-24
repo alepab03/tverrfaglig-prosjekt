@@ -6,28 +6,28 @@ export default function Nav(props: any) {
 
     useEffect(() => {
         if (props.location === 'dashboard') {
-            setActiveBg({...activeBg, dashboard: 'bg-[#CFCFCF]'});
+            setActiveBg({...activeBg, dashboard: 'bg-[#0a765f]'});
         } else if (props.location === 'adgangskontroll') {
-            setActiveBg({...activeBg, adgangskontroll: 'bg-[#CFCFCF]'});
+            setActiveBg({...activeBg, adgangskontroll: 'bg-[#0a765f]'});
         }
     }, [props.location]);
 
     return(
-        <div className="bg-[#E8E8E8] w-1/1 h-[87vh] hidden sm:block -z-1">
+       <div className="bg-[#005850] w-64 h-[87vh] hidden sm:block -z-10 text-white">
             <a href="/">
-                <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF] active:bg-[#CFCFCF] ${activeBg ? activeBg.dashboard : ''}`}>
+                <p className={` p-2 pl-5 hover:bg-[#0a765f]  active:bg-[#0a765f] ${activeBg ? activeBg.dashboard : ''}`}>
                     Dashboard
-                </h3>
+                </p>
             </a>
             <a href="/kort-administrering">
-                <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF]   active:bg-[#CFCFCF] ${activeBg ? activeBg.adgangskontroll : ''}`}>
-                    Adgangskontroll
-                </h3>
+                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.adgangskontroll : ''}`}>
+                    Brukeradministrering
+                </p>
             </a>
             <a href="/bruker-administrering">
-                <h3 className={`border-b-2 border-black p-2 pl-5 hover:bg-[#CFCFCF]   active:bg-[#CFCFCF] ${activeBg ? activeBg.adgangskontroll : ''}`}>
+                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.brukeradministrering : ''}`}>
                     Brukeradministrering
-                </h3>
+                </p>
             </a>
         </div>
     );

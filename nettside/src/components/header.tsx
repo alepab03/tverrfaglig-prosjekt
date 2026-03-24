@@ -10,11 +10,11 @@ export default function Header() {
 
     return(
         <>
-            <div className="bg-(--green) w-1/1 h-15 sm:h-[13vh] flex flex-row items-center justify-between px-4">
+            <div className="bg-(--green) w-full h-15 sm:h-[13vh] flex flex-row items-center justify-between px-10">
   
                 <div className="flex items-center gap-3">
-                    <img src="/bilder/hamar-katedralskole.svg" alt="Logo" className="h-10" />
-                    <a href="/"><h1 className="text-white font-bold ml-10">Tittel</h1></a> {/* midlertidig navn */}
+                    <img src="/bilder/Logo.png" alt="Logo" className="h-17" />
+                    <a href="/"><h4 className="text-white font-bold ml-10">Adgangskontroll</h4></a> {/* midlertidig navn */}
                     {/* hamburger icon */}
                     <div className={`inline-block mr-9 sm:hidden ${isActive ? 'change' : ''}`} onClick={handleNavToggle}> 
                         <div className="bar1 bg-white"></div>
