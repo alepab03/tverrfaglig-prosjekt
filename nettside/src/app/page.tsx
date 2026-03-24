@@ -76,7 +76,7 @@ export default function Home() {
         {/* Page header */}
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Adgangs logg</h2>
+            <h2 className="text-xl font-semibold text-[var(--green)]">Adgangs logg</h2>
             <p className="text-sm text-gray-400 mt-0.5">Oversikt over alle registrerte adganger</p>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Totalt</p>
-            <p className="text-2xl font-bold text-gray-900">{logData.length}</p>
+            <p className="text-2xl font-bold text-[var(--green)]">{logData.length}</p>
             <p className="text-xs text-gray-400 mt-0.5">adganger registrert</p>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-4">
@@ -131,7 +131,7 @@ export default function Home() {
                 placeholder="Søk her..."
                 value={searchValue}
                 onChange={(e) => { filterList(e.target.value); setSearchValue(e.target.value); }}
-                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-gray-900 bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
+                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-[var(--green)] bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
               />
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function Home() {
                         >
                           {ini}
                         </div>
-                        <span className="text-sm font-medium text-gray-900">{data.name}</span>
+                        <span className="text-sm font-medium text-[var(--green)]">{data.name}</span>
                       </div>
                     </td>
                   </tr>

@@ -113,7 +113,7 @@ export default function Administrering() {
           Avbryt
         </button>
 
-        <Button color={0} title="Lagre endringer" url="#" onClick={() => setIsOpen(false)} />
+        <Button color={0} title="Lagre endringer" />
       </div>
 
     </form>
@@ -124,7 +124,7 @@ export default function Administrering() {
             <div className="col-span-3 flex flex-col mt-10 px-6">
                 <div className="card-table">
                     <div className="mb-4">
-    <h2 className="text-xl font-semibold text-gray-900">Adgangskontroll</h2>
+    <h2 className="text-xl font-semibold text-[var(--green)]">Adgangskontroll</h2>
     <p className="text-sm text-gray-400">Administrer adgangskort</p>
   </div>
 
@@ -159,7 +159,7 @@ export default function Administrering() {
                 #{data.id}
               </td>
 
-              <td className="px-4 py-3 text-sm font-medium text-gray-900">
+              <td className="px-4 py-3 text-sm font-medium text-[var(--green)]">
                 {data.name}
               </td>
 
@@ -191,7 +191,7 @@ export default function Administrering() {
               </td>
 
               <td className="px-4 py-3">
-                <Button color={0} title="Rediger" url="#" onClick={() => handlePopUpOpen(index)} />
+                <Button color={0} title="Rediger" onClick={() => handlePopUpOpen(index)} />
               </td>
 
             </tr>
