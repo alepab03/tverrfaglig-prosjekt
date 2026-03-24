@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/app/api/database fetch/route.ts"  ],
+, "src/app/api/database_fetch/route.ts"  ],
   "exclude": ["node_modules"]
 }
