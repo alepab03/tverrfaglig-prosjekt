@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Gjenbrukbar input-komponent i samme stil
-let InputField = ({ type, placeholder }: { type: string; placeholder: string }) => (
+const InputField = ({ type, placeholder }: { type: string; placeholder: string }) => (
   <input
     type={type}
     placeholder={placeholder}
@@ -15,21 +15,21 @@ let InputField = ({ type, placeholder }: { type: string; placeholder: string }) 
 );
 
 export default function Reg() {
-  let [isSignIn, setIsSignIn] = useState<boolean>(true);
+  const [isSignIn, setIsSignIn] = useState<boolean>(true);
 
   // Skjema-handlere
-  let handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Logg inn sendt!");
   };
 
-  let handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Registrering sendt!");
   };
 
   // Dynamisk innhold for desktop-panelet
-  let logIn = (<div>
+  const logIn = (<div>
       <h2 style={{ fontWeight: 700 }}>Ingen konto?</h2>
       <p className="text-sm text-left mb-8 text-(--background)">
         For å holde kontakten, registrer deg her med informasjonen din!
@@ -40,7 +40,7 @@ export default function Reg() {
       </button>
     </div> );
   
-  let signUp = (<div>
+  const signUp = (<div>
       <h2 style={{ fontWeight: 700 }}>Har allerede konto?</h2>
       <p className="text-sm text-left mb-8 text-(--background)">
         Logg inn her!
