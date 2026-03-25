@@ -13,7 +13,7 @@ export default function Home() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [categoryValue, setCategoryValue] = useState<string>('');
   const router = useRouter();
-
+  // authorization
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem('token');
