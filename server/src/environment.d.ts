@@ -6,6 +6,7 @@ declare global {
             DB_PASSWORD: string;
             DB_NAME: string;
             PORT: number;
+            JWT_KEY: string;
         }
     }
 }
