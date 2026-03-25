@@ -54,7 +54,7 @@ export default function Brukeradministrering() {
                 <Header />
             </div>
             <div className="col-span-1">
-                <Nav />
+                <Nav location="brukeradministrering" />
             </div>
             <div className={`background-popup ${isOpen ? 'open' : ''}`}>
                 <div className="bg-white rounded-[0.313rem] w-[20vw] h-[40vh] flex flex-col items-center justify-center">
