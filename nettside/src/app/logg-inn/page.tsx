@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 // Gjenbrukbar input-komponent i samme stil
 let InputField = ({ type, placeholder, value, onChange, name }: { type: string; placeholder: string; value: any; onChange: any; name: string; }) => (
@@ -20,15 +21,16 @@ let InputField = ({ type, placeholder, value, onChange, name }: { type: string; 
 
 export default function Reg() {
   const [formValues, setFormValues] = useState<any>({username: '', password: ''});
+  const router = useRouter();
 
   // Skjema-handlere
   let handleSignIn = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3306/auth/login', formValues);
+      const response = await axios.post('http://localhost:5000/auth/login', formValues);
       if(response.status === 201) {
         localStorage.setItem('token', response.data.token);
-        /* navigate to homepage somehow, ill figure it out */
+        router.replace('/');
       }
     } catch (error) {
       console.log('Failed to register data', error);
