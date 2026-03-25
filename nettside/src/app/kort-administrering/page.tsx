@@ -3,6 +3,8 @@ import Button from "@/src/components/button";
 import Header from "@/src/components/header";
 import Nav from "@/src/components/nav";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from 'axios';
 
 
 export default function Administrering() {
@@ -13,6 +15,23 @@ export default function Administrering() {
     const [formValues, setFormValues] = useState<any>({name: '', code: '', access: ''}); /* values for pop up form */
     const [inputType, setInputType] = useState<string>('password'); /* for "se kode" button */
     const [inputTypeToggle, setInputTypeToggle] = useState<boolean>(true); /* for "se kode" button */
+    const router = useRouter();
+    // authorization
+    const fetchUser = async () => {
+        try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/auth/home', {
+            headers: {
+            "Authorization" : `Bearer ${token}`
+            }
+        });
+        } catch(error) {
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     const handlePopUpOpen = (index: number) => {
         setSelected(index);

@@ -1,12 +1,31 @@
 "use client"
 import Header from "@/src/components/header";
 import Nav from "@/src/components/nav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 export default function Brukeradministrering() {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const [formValues, setFormValues] = useState<any>({username: '', password: ''});
+    const router = useRouter();
+    // authorization
+    const fetchUser = async () => {
+        try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/auth/home', {
+            headers: {
+            "Authorization" : `Bearer ${token}`
+            }
+        });
+        } catch(error) {
+        router.push('/logg-inn');
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     const handleFormValueChange = (e: any) => {
         setFormValues({...formValues, [e.target.name]:e.target.value});
