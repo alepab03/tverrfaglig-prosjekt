@@ -2,6 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../components/header";
 import Nav from "../components/nav";
+import axios from 'axios';
+import { redirect, RedirectType } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   /* her skal data inn for loggen (logData), midlertidige verdier for testing i array */
@@ -9,7 +12,26 @@ export default function Home() {
   const tableRowRefs = useRef<(HTMLTableRowElement | null) []>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [categoryValue, setCategoryValue] = useState<string>('');
+  const router = useRouter();
 
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:5000/auth/home', {
+        headers: {
+          "Authorization" : `Bearer ${token}`
+        }
+      });
+    } catch(error) {
+      //redirect('/registrering', RedirectType.push); | begge disse metodene er litt trege på å reagere men jeg vet ikke om det er fordi det skjer i en async function eller om det er fordi jeg er på dev, må teste forskjellige ting for å se om det er en løsning på det her
+      router.push('/logg-inn');
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  /* søkefunksjon */
   const setTableRowRef = (e: HTMLTableRowElement | null, index: number ) => {
     tableRowRefs.current[index] = e;
   };
