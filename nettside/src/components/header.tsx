@@ -26,13 +26,13 @@ export default function Header() {
             {/* dropdown menu (midlertidige navn og linker) */}
             <div className="sm:hidden block overflow-hidden dropdown-container bg-[#E8E8E8]" style={{ padding: isActive ? "1rem" : "0 1rem", maxHeight: isActive ? "20rem" : "0" }}>
                 <a href="/">
-                    <h3 className="font-semibold hover:bg-[#CFCFCF] border-b border-[var(--green)]">Dashboard</h3>
+                    <h3 className="font-semibold hover:bg-[#CFCFCF] border-b border-(--green)">Dashboard</h3>
                 </a>
                 <a href="/kort-administrering">
-                    <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-[var(--green)]">Adgangskontroll</h3>
+                    <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-(--green)">Adgangskontroll</h3>
                 </a>
                 <a href="/bruker-administrering">
-                    <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-[var(--green)]">Brukeradministrering</h3>
+                    <h3 className="font-semibold hover:bg-[#CFCFCF] mt-2 border-b border-(--green)">Brukeradministrering</h3>
                 </a>
             </div>
         </>

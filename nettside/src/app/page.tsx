@@ -36,7 +36,7 @@ export default function Home() {
     tableRowRefs.current[index] = e;
   };
 
-  const filterList = (searchTerm: string) => {
+  const filterList = (searchTerm: any) => {
     searchTerm = searchTerm.toLowerCase();
     tableRowRefs.current.forEach((row) => {
       if (row?.children) {
@@ -45,9 +45,38 @@ export default function Home() {
         let card = row.children[2].innerHTML.toLowerCase();
         let name = row.children[3].innerHTML.toLowerCase();
 
-        const map: Record<string, string> = { date, time, card, name };
-        const val = map[categoryValue] ?? '';
-        row.style.display = val.indexOf(searchTerm) !== -1 ? 'table-row' : 'none';
+        switch(categoryValue) {
+          case "date":
+            if (date.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case "time":
+            if (time.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case "card":
+            if (card.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case 'name':
+            if (name.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+        }
+      } else {
+        console.log('Unable to find expected elements');
       }
     });
   };
@@ -89,7 +118,7 @@ export default function Home() {
         {/* Page header */}
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-[var(--green)]">Adgangs logg</h2>
+            <h2 className="text-xl font-semibold text---green)">Adgangs logg</h2>
             <p className="text-sm text-gray-400 mt-0.5">Oversikt over alle registrerte adganger</p>
           </div>
         </div>
@@ -98,7 +127,7 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Totalt</p>
-            <p className="text-2xl font-bold text-[var(--green)]">{logData.length}</p>
+            <p className="text-2xl font-bold text-(--green)">{logData.length}</p>
             <p className="text-xs text-gray-400 mt-0.5">adganger registrert</p>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-4">
@@ -144,7 +173,7 @@ export default function Home() {
                 placeholder="Søk her..."
                 value={searchValue}
                 onChange={(e) => { filterList(e.target.value); setSearchValue(e.target.value); }}
-                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-[var(--green)] bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
+                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-(--green) bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
               />
             </div>
           </div>
@@ -185,12 +214,12 @@ export default function Home() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0"
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
                           style={{ backgroundColor: bg, color: fg }}
                         >
                           {ini}
                         </div>
-                        <span className="text-sm font-medium text-[var(--green)]">{data.name}</span>
+                        <span className="text-sm font-medium text-(--green)">{data.name}</span>
                       </div>
                     </td>
                   </tr>
