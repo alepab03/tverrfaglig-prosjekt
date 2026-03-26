@@ -19,7 +19,7 @@ export default function Brukeradministrering() {
             }
         });
         } catch(error) {
-        router.push('/logg-inn');
+        router.replace('/logg-inn');
         }
     };
 

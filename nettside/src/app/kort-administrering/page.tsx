@@ -26,6 +26,7 @@ export default function Administrering() {
             }
         });
         } catch(error) {
+            router.replace('/logg-inn');
         }
     };
 
