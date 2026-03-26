@@ -1,3 +1,15 @@
+import express from 'express';
+
+declare global {
+    namespace Express {
+        interface Request {
+            userId: number;
+        } interface Response {
+            userId: number;
+        }
+    }
+}
+
 declare global {
     namespace NodeJS {
         interface ProcessEnv {

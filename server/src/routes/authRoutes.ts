@@ -45,14 +45,18 @@ router.post('/login', async (request, response) => {
     }
 });
 
+interface JwtPayload {
+    id: number;
+}
+
 const verifyToken = async (request: any, response: any, next: any) => {
     try {
         const token = request.headers['authorization'].split(' ')[1];
         if(!token) {
             return response.status(403).json({message : "No token provided"});
         }
-        const decoded = jwt.verify(token, process.env.JWT_KEY);
-        request.userId = decoded.id; /* vet ikke hvorfor dette ikke vil fungere, gjorde det på videon jeg så hmm */
+        const decoded = jwt.verify(token, process.env.JWT_KEY) as JwtPayload;
+        request.userId = decoded.id;
         next();
     } catch (error) {
         return response.status(500).json({message: "server error"});
@@ -62,11 +66,11 @@ const verifyToken = async (request: any, response: any, next: any) => {
 router.get('/home', verifyToken, async (request, response) => {
     try {
         const db = await connectToDB();
-        const [rows] = await db.query('SELECT * FROM Users WHERE UserID = ?', [request.userId]); /* vet ikke hvorfor dette ikke vil fungere, gjorde det på videon jeg så hmm */
+        const [rows] = await db.query('SELECT * FROM Users WHERE UserID = ?', [request.userId]);
         if (rows.length === 0){
             return response.status(404).json({message: 'user does not exist'});
         }
-
+        console.log("user:", rows[0]);
         return response.status(201).json({user: rows[0]});
     } catch(error) {
         return response.status(500).json({message: "server error"});
