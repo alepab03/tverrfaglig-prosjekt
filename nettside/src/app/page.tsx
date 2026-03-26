@@ -24,7 +24,7 @@ export default function Home() {
       });
     } catch(error) {
       //redirect('/registrering', RedirectType.push); | begge disse metodene er litt trege på å reagere men jeg vet ikke om det er fordi det skjer i en async function eller om det er fordi jeg er på dev, må teste forskjellige ting for å se om det er en løsning på det her
-     //
+      router.push('/logg-inn');
     }
   };
 
