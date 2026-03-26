@@ -10,7 +10,7 @@ export default function Nav(props: any) {
         } else if (props.location === 'adgangskontroll') {
             setActiveBg({...activeBg, adgangskontroll: 'bg-[#0a765f]'});
         } else if (props.location === 'brukeradministrering'){
-            setActiveBg({...activeBg, brukeradministrering: 'bg-[#0a765f'});
+            setActiveBg({...activeBg, brukeradministrering: 'bg-[#0a765f]'});
         }
     }, [props.location]);
 
