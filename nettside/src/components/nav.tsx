@@ -24,14 +24,6 @@ export default function Nav(props: any) {
             <a href="/kort-administrering">
                 <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.adgangskontroll : ''}`}>
                     Adgangskontroll
-<<<<<<< Updated upstream
-                </p>
-            </a>
-            <a href="/bruker-administrering">
-                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.brukeradministrering : ''}`}>
-                    Brukeradministrering
-=======
->>>>>>> Stashed changes
                 </p>
             </a>
         </div>

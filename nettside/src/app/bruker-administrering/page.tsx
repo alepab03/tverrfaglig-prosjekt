@@ -21,11 +21,7 @@ export default function Brukeradministrering() {
             }
         });
         } catch(error) {
-<<<<<<< Updated upstream
-        router.replace('/logg-inn');
-=======
        // router.push('/logg-inn');//
->>>>>>> Stashed changes
         }
     };
 
