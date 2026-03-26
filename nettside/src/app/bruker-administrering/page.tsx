@@ -4,9 +4,11 @@ import Nav from "@/src/components/nav";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRouter } from "next/navigation";
+import Button from "@/src/components/button";
 
 export default function Brukeradministrering() {
-    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [userData, setUserData] = useState<any []>([{username: '2inf', password: 'testing', access: 'admin'}, {username: '2del', password: 'testing', access: 'admin'}])
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<any>({username: '', password: ''});
     const router = useRouter();
     // authorization
@@ -57,9 +59,9 @@ export default function Brukeradministrering() {
                 <Nav location="brukeradministrering" />
             </div>
             <div className={`background-popup ${isOpen ? 'open' : ''}`}>
-                <div className="bg-white rounded-[0.313rem] w-[20vw] h-[40vh] flex flex-col items-center justify-center">
+                <div className="bg-white rounded-[0.313rem] w-[20vw] h-[40vh] flex flex-col items-center justify-center relative">
                     <h2 className="font-bold mb-5">Opprett bruker</h2>
-                    <button onClick={handlePopUpOpen}>x</button>
+                    <button onClick={handlePopUpOpen} className="absolute top-0 right-0 mr-4 mt-1 text-4xl font-bold cursor-pointer">x</button>
                     <form onSubmit={handleFormSubmit}>
                         <div className="flex flex-col">
                             <label htmlFor="username" className="font-bold">Brukernavn:</label>
@@ -78,7 +80,31 @@ export default function Brukeradministrering() {
                 </div>
             </div>
             <div>
-
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brukernavn</th>
+                            <th>Passord??</th>
+                            <th>Tilgang</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {userData.map((data: any, index: number) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{data.username}</td>
+                                    <td><input type="password" readOnly value={data.password} /></td>
+                                    <td>{data.access}</td>
+                                    <td><Button title='Rediger' color={0}/></td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <div className="mt-5">
+                    <Button color={0} title='Legg til ny bruker' onClick={handlePopUpOpen} />
+                </div>
             </div>
         </div>
     );
