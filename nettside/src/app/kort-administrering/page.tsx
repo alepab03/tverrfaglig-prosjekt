@@ -3,8 +3,8 @@ import Button from "@/src/components/button";
 import Header from "@/src/components/header";
 import Nav from "@/src/components/nav";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from 'axios';
+import { fetchUser, admin } from "../libs/authorization";
 
 
 export default function Administrering() {
@@ -15,21 +15,8 @@ export default function Administrering() {
     const [formValues, setFormValues] = useState<any>({name: '', code: '', access: ''}); /* values for pop up form */
     const [inputType, setInputType] = useState<string>('password'); /* for "se kode" button */
     const [inputTypeToggle, setInputTypeToggle] = useState<boolean>(true); /* for "se kode" button */
-    const router = useRouter();
-    // authorization
-    const fetchUser = async () => {
-        try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/auth/home', {
-            headers: {
-            "Authorization" : `Bearer ${token}`
-            }
-        });
-        } catch(error) {
-            router.replace('/logg-inn');
-        }
-    };
 
+    // authorization
     useEffect(() => {
         fetchUser();
     }, []);
@@ -58,7 +45,7 @@ export default function Administrering() {
     };
 
     return(
-        <div className="grid grid-cols-4 auto-rows-auto">
+        <div className={`${admin ? 'grid' : 'grid'} grid-cols-4 auto-rows-auto`}>
             <div className="col-span-5 row-span-1">
                 <Header />
             </div>
