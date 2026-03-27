@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 
 export default function Nav(props: any) {
     /* bruker midlertidige navn */
-    const [activeBg, setActiveBg] = useState<any>({dashboard: '', adgangskontroll: ''});
+    const [activeBg, setActiveBg] = useState<any>({dashboard: '', adgangskontroll: '', brukeradministrering: ''});
 
     useEffect(() => {
         if (props.location === 'dashboard') {
             setActiveBg({...activeBg, dashboard: 'bg-[#0a765f]'});
         } else if (props.location === 'adgangskontroll') {
             setActiveBg({...activeBg, adgangskontroll: 'bg-[#0a765f]'});
+        } else if (props.location === 'brukeradministrering'){
+            setActiveBg({...activeBg, brukeradministrering: 'bg-[#0a765f]'});
         }
     }, [props.location]);
 
@@ -21,10 +23,14 @@ export default function Nav(props: any) {
             </a>
             <a href="/kort-administrering">
                 <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.adgangskontroll : ''}`}>
+                    Adgangskontroll
+                </p>
+            </a>
+            <a href="/bruker-administrering">
+                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.brukeradministrering : ''}`}>
                     Brukeradministrering
                 </p>
             </a>
-
         </div>
     );
 }

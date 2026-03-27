@@ -1,12 +1,5 @@
 
-interface ButtonProps {
-    color: number;
-    url: string;
-    onClick: () => void;
-    title: string;
-}
-
-export default function Button(props: ButtonProps) {
+export default function Button(props: any) {
 
     let btnColor;
     if (props.color === 0) {

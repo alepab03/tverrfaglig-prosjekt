@@ -1,3 +1,15 @@
+import express from 'express';
+
+declare global {
+    namespace Express {
+        interface Request {
+            userId: number;
+        } interface Response {
+            userId: number;
+        }
+    }
+}
+
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
@@ -6,6 +18,7 @@ declare global {
             DB_PASSWORD: string;
             DB_NAME: string;
             PORT: number;
+            JWT_KEY: string;
         }
     }
 }

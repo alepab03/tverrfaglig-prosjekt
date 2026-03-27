@@ -1,29 +1,42 @@
 "use client"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../components/header";
 import Nav from "../components/nav";
-
-interface LogEntry {
-  date: string;
-  time: string;
-  card: number;
-  name: string;
-}
+import axios from 'axios';
+import { redirect, RedirectType } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [logData] = useState<LogEntry[]>([
-    { date: '2026-03-17', time: '09:28:45', card: 1, name: "navn navnesen" },
-    { date: '2026-03-17', time: '13:06:34', card: 2, name: "Trine" }
-  ]);
-  const tableRowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
+  /* her skal data inn for loggen (logData), midlertidige verdier for testing i array */
+  const [logData, setLogData] = useState<any[]>([{date: '2026-03-17', time: '09:28:45', card: 1, name: "navn navnesen" }, {date: '2026-03-17', time: '13:06:34', card: 2, name: "Trine" }]);
+  const tableRowRefs = useRef<(HTMLTableRowElement | null) []>([]);
   const [searchValue, setSearchValue] = useState<string>('');
-  const [categoryValue, setCategoryValue] = useState<string>('date');
+  const [categoryValue, setCategoryValue] = useState<string>('');
+  const router = useRouter();
+  // authorization
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:5000/auth/home', {
+        headers: {
+          "Authorization" : `Bearer ${token}`
+        }
+      });
+    } catch(error) {
+      //redirect('/registrering', RedirectType.push); | begge disse metodene er litt trege på å reagere men jeg vet ikke om det er fordi det skjer i en async function eller om det er fordi jeg er på dev, må teste forskjellige ting for å se om det er en løsning på det her
+      router.push('/logg-inn');
+    }
+  };
 
-  const setTableRowRef = (e: HTMLTableRowElement | null, index: number) => {
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  /* søkefunksjon */
+  const setTableRowRef = (e: HTMLTableRowElement | null, index: number ) => {
     tableRowRefs.current[index] = e;
   };
 
-  const filterList = (searchTerm: string) => {
+  const filterList = (searchTerm: any) => {
     searchTerm = searchTerm.toLowerCase();
     tableRowRefs.current.forEach((row) => {
       if (row?.children) {
@@ -32,9 +45,38 @@ export default function Home() {
         let card = row.children[2].innerHTML.toLowerCase();
         let name = row.children[3].innerHTML.toLowerCase();
 
-        const map: Record<string, string> = { date, time, card, name };
-        const val = map[categoryValue] ?? '';
-        row.style.display = val.indexOf(searchTerm) !== -1 ? 'table-row' : 'none';
+        switch(categoryValue) {
+          case "date":
+            if (date.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case "time":
+            if (time.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case "card":
+            if (card.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+          case 'name':
+            if (name.indexOf(searchTerm) != -1){
+              row.style.display = "table-row";
+            } else {
+              row.style.display  = "none";
+            }
+            break;
+        }
+      } else {
+        console.log('Unable to find expected elements');
       }
     });
   };
@@ -76,7 +118,7 @@ export default function Home() {
         {/* Page header */}
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Adgangs logg</h2>
+            <h2 className="text-xl font-semibold text---green)">Adgangs logg</h2>
             <p className="text-sm text-gray-400 mt-0.5">Oversikt over alle registrerte adganger</p>
           </div>
         </div>
@@ -85,7 +127,7 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Totalt</p>
-            <p className="text-2xl font-bold text-gray-900">{logData.length}</p>
+            <p className="text-2xl font-bold text-(--green)">{logData.length}</p>
             <p className="text-xs text-gray-400 mt-0.5">adganger registrert</p>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-4">
@@ -131,7 +173,7 @@ export default function Home() {
                 placeholder="Søk her..."
                 value={searchValue}
                 onChange={(e) => { filterList(e.target.value); setSearchValue(e.target.value); }}
-                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-gray-900 bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
+                className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm text-(--green) bg-gray-50 w-56 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 placeholder:text-gray-400"
               />
             </div>
           </div>
@@ -172,12 +214,12 @@ export default function Home() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0"
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
                           style={{ backgroundColor: bg, color: fg }}
                         >
                           {ini}
                         </div>
-                        <span className="text-sm font-medium text-gray-900">{data.name}</span>
+                        <span className="text-sm font-medium text-(--green)">{data.name}</span>
                       </div>
                     </td>
                   </tr>
