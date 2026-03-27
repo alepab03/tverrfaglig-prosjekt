@@ -35,53 +35,45 @@ export default function Brukeradministrering() {
         fetchUsers();
     }, []); // should depend on something so it updates every time a change is made, unless every time i close a popup the window does a reload
 
-  const router = useRouter();
-
-  // authorization
-  const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.get("http://localhost:5000/auth/home", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    } catch (error) {
-      // router.replace('/logg-inn');
-    }
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   const handleFormValueChange = (e: any) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
   const handleFormSubmit = async (e: any) => {
-    e.preventDefault();
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:5000/auth/register', formValues);
+            if (response.status === 201) {
+                setIsAddUserPopUpOpen(false);
+            }
+        } catch(error) {
+            console.log("Failed to register data", error);
+        }
+        setFormValues({username: '', password: ''});
+    };
 
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/register",
-        formValues
-      );
+    const handlePopUpOpen = (where: number) => {
+        if (where === 0) {
+            setIsAddUserPopUpOpen(!isAddUserPopUpOpen);
+        } else if (where === 1) {
+            setIsEditPopUpOpen(!isEditPopUpOpen);
+        }
+        
+    };
 
-      if (response.status === 201) {
-        setUserData([...userData, formValues]); // oppdater UI
-        setIsOpen(false);
-      }
-    } catch (error) {
-      console.log("Failed to register data", error);
-    }
-
-    setFormValues({ username: "", password: "" });
-  };
-
-  const handlePopUpOpen = () => {
-    setIsOpen(!isOpen);
-  };
+    const handleUserEdit = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:5000/auth/edit-user', selected); 
+            if (response.status === 201) {
+                console.log('User edited successfully');
+            }
+            console.log(response);
+        } catch(error) {
+            console.log('Failed to edit user', error);
+        }
+    };
+    console.log(admin);
 
   return (
     <div className="grid grid-cols-4 auto-rows-auto">
@@ -144,41 +136,6 @@ export default function Brukeradministrering() {
               </button>
 
               <Button title="Opprett bruker" color={0} />
-    const handleFormSubmit = async (e: any) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/auth/register', formValues);
-            if (response.status === 201) {
-                setIsAddUserPopUpOpen(false);
-            }
-        } catch(error) {
-            console.log("Failed to register data", error);
-        }
-        setFormValues({username: '', password: ''});
-    };
-
-    const handlePopUpOpen = (where: number) => {
-        if (where === 0) {
-            setIsAddUserPopUpOpen(!isAddUserPopUpOpen);
-        } else if (where === 1) {
-            setIsEditPopUpOpen(!isEditPopUpOpen);
-        }
-        
-    };
-
-    const handleUserEdit = async (e: any) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/auth/edit-user', selected); 
-            if (response.status === 201) {
-                console.log('User edited successfully');
-            }
-            console.log(response);
-        } catch(error) {
-            console.log('Failed to edit user', error);
-        }
-    };
-    console.log(admin);
     return(
         <div>
             <div className={`grid-cols-5 grid-rows-auto ${admin ? 'grid' : 'grid'}`}>
