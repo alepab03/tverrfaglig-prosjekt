@@ -9,8 +9,10 @@ export async function GET() {
     try {
         const db = await pool.getConnection()
         const query = 'SELECT * FROM sensor_data LIMIT 100'
-        const [rows] = await db.execute(query)
+        const [rows, fields] = await db.execute(query)
         db.release()
+
+        console.log(rows)
 
         return NextResponse.json(rows)
     } catch (error) {
