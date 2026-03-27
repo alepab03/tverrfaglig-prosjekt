@@ -75,5 +75,31 @@ router.get('/home', verifyToken, async (request, response) => {
     } catch(error) {
         return response.status(500).json({message: "server error"});
     }
-})
+});
+
+router.get('/users', async (request, response) => {
+    try {
+        const db = await connectToDB();
+        const [rows] = await db.query('SELECT UserId, Username, Permission FROM Users');
+        return response.status(201).json({users: rows});
+    } catch(error) {
+        console.log(error);
+        return response.status(500).json({message: "server error"});
+    }
+});
+
+router.post('/edit-user', async (request, response) => {
+    const {userId, deletion, permission} = request.body;
+    try {
+        const db = await connectToDB();
+        if (deletion === true) {
+            await db.query('DELETE FROM Users WHERE UserId = ?', [userId]);
+        } else {
+            await db.query('UPDATE Users SET Permission = ? WHERE UserId = ?', [permission, userId]);
+        }
+        return response.status(201).json({message: 'user successfully edited'});
+    } catch(error) {
+        return response.status(500).json({message: 'server error'});
+    }
+});
 export default router;
