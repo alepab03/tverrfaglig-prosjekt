@@ -126,7 +126,7 @@ export default function Home() {
   };
 
 
-  const today = logData.filter(d => d.date === new Date().toISOString().slice(0, 10)).length;
+  const today = logData.filter(d => d.date = new Date().toISOString().slice(0, 10)).length;
   const uniqueCards = new Set(logData.map(d => d.card)).size;
 
   return (
@@ -218,7 +218,7 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {logData.map((data: any, index: number) => {
+              {logData.toReversed().map((data: any, index: number) => {
                 //const [bg, fg] = avatarColor(data.name);
                 //const ini = initials(data.name);
                 return (
