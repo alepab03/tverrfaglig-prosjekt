@@ -25,7 +25,6 @@ export default function Brukeradministrering() {
                 "Authorization" : `Bearer ${token}`
                 }
             });
-            console.log(response);
             if (response.data.user.Permission === "admin"){
                 setAdmin(true);
             } else {
