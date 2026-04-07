@@ -36,7 +36,7 @@ export default function Reg() {
       const response = await axios.post("http://localhost:5000/auth/login", formValues);
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
-       // router.replace("/");//
+        router.replace("/");
       }
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.status === 401) {
