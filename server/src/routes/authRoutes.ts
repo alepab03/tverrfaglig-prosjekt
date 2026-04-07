@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 router.post('/register', async (request, response) => {
-    const {username, password} = request.body;
+    const {username, password, permission} = request.body;
     try {
         const db = await connectToDB();
         const [rows] = await db.query('SELECT * FROM Users WHERE username = ?', [username]);
@@ -15,7 +15,7 @@ router.post('/register', async (request, response) => {
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
-        await db.query('INSERT INTO Users (username, password) VALUES (?, ?)', [username, hashPassword]);
+        await db.query('INSERT INTO Users (Username, Password, Permission) VALUES (?, ?, ?)', [username, hashPassword, permission]);
 
         response.status(201).json({message: 'user created successfully'});
     } catch(error) {

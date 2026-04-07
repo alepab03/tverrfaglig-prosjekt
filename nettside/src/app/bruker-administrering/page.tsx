@@ -11,7 +11,7 @@ export default function Brukeradministrering() {
     const [userData, setUserData] = useState<any []>([])
     const [isAddUserPopUpOpen, setIsAddUserPopUpOpen] = useState<boolean>(false);
     const [isEditPopUpOpen, setIsEditPopUpOpen] = useState<boolean>(false);
-    const [formValues, setFormValues] = useState<any>({username: '', password: ''});
+    const [formValues, setFormValues] = useState<any>({username: '', password: '', permission: ''});
     const [selected, setSelected] = useState<any>({index: 0, userId: 0, deletion: false, permission: ''});
     const [admin, setAdmin] = useState<boolean>(false);
     // authorization
@@ -114,6 +114,14 @@ export default function Brukeradministrering() {
                             <div className="mt-2 flex flex-col">
                                 <label htmlFor="password" className="font-semibold text-sm text-gray-700">Passord:</label>
                                 <input type="password" name="password" id="password" value={formValues.password} onChange={handleFormValueChange} className="border rounded-md px-2 py-1" required />
+                            </div>
+                            <div className="mt-2 flex flex-col">
+                                <label htmlFor="permission" className="font-semibold text-sm text-gray-700">Tillatelse:</label>
+                                <select name="permission" id="permission" onChange={handleFormValueChange} value={formValues.permission} className="border rounded-md px-2 py-1" required>
+                                    <option disabled></option>
+                                    <option value="admin">admin</option>
+                                    <option value="readOnly">read only</option>
+                                </select>
                             </div>
                             <div className="flex justify-end gap-3 mt-2">
                               <button type="button" onClick={() => handlePopUpOpen(0)} className="px-4 py-2 rounded-md border text-gray-600 hover:bg-gray-100">
