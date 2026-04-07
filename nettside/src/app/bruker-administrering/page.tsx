@@ -74,68 +74,6 @@ export default function Brukeradministrering() {
         }
     };
     console.log(admin);
-
-  return (
-    <div className="grid grid-cols-4 auto-rows-auto">
-      {/* Header */}
-      <div className="col-span-5">
-        <Header />
-      </div>
-
-      {/* Nav */}
-      <div className="col-span-1 row-start-2">
-        <Nav location="brukeradministrering" />
-      </div>
-
-      {/* Popup */}
-      <div className={`background-popup ${isOpen ? "open" : ""}`}>
-        <div className="bg-white w-[90%] sm:w-[30%] rounded-xl shadow-lg p-6 flex flex-col">
-          <h3 className="font-bold text-lg mb-4 text-gray-800">
-            Opprett bruker
-          </h3>
-
-          <form
-            onSubmit={handleFormSubmit}
-            className="flex flex-col gap-4"
-          >
-            <div className="flex flex-col">
-              <label className="font-semibold text-sm text-gray-700">
-                Brukernavn
-              </label>
-              <input
-                type="text"
-                name="username"
-                value={formValues.username}
-                onChange={handleFormValueChange}
-                className="border rounded-md px-2 py-1"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="font-semibold text-sm text-gray-700">
-                Passord
-              </label>
-              <input
-                type="password"
-                name="password"
-                value={formValues.password}
-                onChange={handleFormValueChange}
-                className="border rounded-md px-2 py-1"
-                required
-              />
-            </div>
-
-            <div className="flex justify-end gap-3 mt-2">
-              <button
-                type="button"
-                onClick={handlePopUpOpen}
-                className="px-4 py-2 rounded-md border text-gray-600 hover:bg-gray-100"
-              >
-                Avbryt
-              </button>
-
-              <Button title="Opprett bruker" color={0} />
     return(
         <div>
             <div className={`grid-cols-5 grid-rows-auto ${admin ? 'grid' : 'grid'}`}>
@@ -146,19 +84,21 @@ export default function Brukeradministrering() {
                     <Nav location="brukeradministrering" />
                 </div>
                 <div className={`background-popup ${isAddUserPopUpOpen ? 'open' : ''}`}>
-                    <div className="bg-white rounded-[0.313rem] w-[20vw] h-[40vh] flex flex-col items-center justify-center relative">
-                        <h2 className="font-bold mb-5">Opprett bruker</h2>
-                        <button onClick={() => handlePopUpOpen(0)} className="absolute top-0 right-0 mr-4 mt-1 text-4xl font-bold cursor-pointer">x</button>
+                    <div className="bg-white w-[90%] sm:w-[30%] rounded-xl shadow-lg p-6 flex flex-col">
+                        <h3 className="font-bold text-lg mb-4 text-gray-800">Opprett bruker</h3>
                         <form onSubmit={handleFormSubmit}>
                             <div className="flex flex-col">
-                                <label htmlFor="username" className="font-bold">Brukernavn:</label>
-                                <input type="text" name="username" id="username" value={formValues.username} onChange={handleFormValueChange} className="border rounded-[0.313rem] pl-2" required />
+                                <label htmlFor="username" className="font-semibold text-sm text-gray-700">Brukernavn:</label>
+                                <input type="text" name="username" id="username" value={formValues.username} onChange={handleFormValueChange} className="border rounded-md px-2 py-1" required />
                             </div>
                             <div className="mt-2 flex flex-col">
-                                <label htmlFor="password" className="font-bold">Passord:</label>
-                                <input type="password" name="password" id="password" value={formValues.password} onChange={handleFormValueChange} className="border rounded-[0.313rem] pl-2" required />
+                                <label htmlFor="password" className="font-semibold text-sm text-gray-700">Passord:</label>
+                                <input type="password" name="password" id="password" value={formValues.password} onChange={handleFormValueChange} className="border rounded-md px-2 py-1" required />
                             </div>
-                            <div className="mt-5 flex flex-col items-center">
+                            <div className="flex justify-end gap-3 mt-2">
+                              <button type="button" onClick={() => handlePopUpOpen(0)} className="px-4 py-2 rounded-md border text-gray-600 hover:bg-gray-100">
+                                Avbryt
+                              </button>
                                 <button type="submit" className='pl-2 pr-2 sm:pl-8 sm:pr-8 pt-2.5 pb-2.5 bg-(--green) hover:bg-[#00302B] rounded-[0.313rem] cursor-pointer'>
                                     <p className="font-bold text-white">Opprett bruker</p>
                                 </button>
@@ -221,9 +161,6 @@ export default function Brukeradministrering() {
             <div>
 
             </div>
-          </form>
-        </div>
-      </div>
 
       {/* Content */}
       <div className="col-span-3 flex flex-col mt-10 px-6">
