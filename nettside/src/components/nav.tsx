@@ -22,12 +22,12 @@ export default function Nav(props: any) {
                 </p>
             </a>
             <a href="/kort-administrering">
-                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.adgangskontroll : ''}`}>
+                <p className={` p-2 pl-5 hover:bg-[#0a765f] ${props.admin ? 'block' : 'hidden'}  active:bg-[#0a765f] ${activeBg ? activeBg.adgangskontroll : ''}`}>
                     Adgangskontroll
                 </p>
             </a>
             <a href="/bruker-administrering">
-                <p className={` p-2 pl-5 hover:bg-[#0a765f]   active:bg-[#0a765f] ${activeBg ? activeBg.brukeradministrering : ''}`}>
+                <p className={` p-2 pl-5 hover:bg-[#0a765f] ${props.admin ? 'block' : 'hidden'} active:bg-[#0a765f] ${activeBg ? activeBg.brukeradministrering : ''}`}>
                     Brukeradministrering
                 </p>
             </a>
