@@ -65,7 +65,7 @@ export default function Administrering() {
     };
 
     return(
-        <div className={`${admin ? 'grid' : 'grid'} grid-cols-4 auto-rows-auto`}>
+        <div className={`${admin ? 'grid' : 'hidden'} grid-cols-4 auto-rows-auto`}>
             <div className="col-span-5 row-span-1">
                 <Header />
             </div>
