@@ -84,6 +84,7 @@ export default function Reg() {
       {/* Right panel */}
       <div className="flex items-center justify-center px-6 py-16 bg-(--background)">
         <div className="w-full max-w-sm">
+          <img src="/bilder/hamar-katedralskole.svg" alt="logo" className="mb-5"/>
           <p className="text-[10px] tracking-[0.18em] uppercase text-(--light-green) font-medium mb-1">
             Konto
           </p>
