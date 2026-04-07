@@ -101,7 +101,7 @@ export default function Brukeradministrering() {
                     <Header />
                 </div>
                 <div className="col-span-1">
-                    <Nav location="brukeradministrering" />
+                    <Nav location="brukeradministrering" admin={true} />
                 </div>
                 <div className={`background-popup ${isAddUserPopUpOpen ? 'open' : ''}`}>
                     <div className="bg-white w-[90%] sm:w-[30%] rounded-xl shadow-lg p-6 flex flex-col">

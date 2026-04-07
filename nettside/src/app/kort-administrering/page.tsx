@@ -70,7 +70,7 @@ export default function Administrering() {
                 <Header />
             </div>
             <div className="col-span-1 row-start-2 row-end-3">
-                <Nav location="adgangskontroll" />
+                <Nav location="adgangskontroll" admin={true} />
             </div>
             {/* pop up */}
             <div className={`background-popup ${isOpen ? 'open' : ''}`}>
