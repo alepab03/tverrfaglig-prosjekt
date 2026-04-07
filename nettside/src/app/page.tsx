@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "../components/header";
 import Nav from "../components/nav";
 import axios from 'axios';
-import { fetchUser } from "./libs/authorization";
+import { redirect, RedirectType } from "next/navigation";
 
 export default function Home() {
   /* her skal data inn for loggen (logData), midlertidige verdier for testing i array */
@@ -11,8 +11,29 @@ export default function Home() {
   const tableRowRefs = useRef<(HTMLTableRowElement | null) []>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [categoryValue, setCategoryValue] = useState<string>('');
+  const [admin, setAdmin] = useState<boolean>(false);
 
   // authorization
+
+    const fetchUser = async () => {
+      try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://localhost:5000/auth/home', {
+              headers: {
+              "Authorization" : `Bearer ${token}`
+              }
+          });
+          if (response.data.user.Permission === "admin"){
+              setAdmin(true);
+          } else {
+              setAdmin(false);
+          }
+          return admin;
+      } catch(error) {
+          redirect('/logg-inn', RedirectType.replace);
+      }
+  };
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -96,7 +117,7 @@ export default function Home() {
         <Header />
       </div>
       <div className="col-span-1 row-span-1">
-        <Nav location="dashboard" />
+        <Nav location="dashboard" admin={admin} />
       </div>
 
       <div className="sm:col-span-3 col-span-5 px-5 py-20">

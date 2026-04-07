@@ -4,7 +4,7 @@ import Header from "@/src/components/header";
 import Nav from "@/src/components/nav";
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { fetchUser, admin } from "../libs/authorization";
+import { redirect, RedirectType } from "next/navigation";
 
 
 export default function Administrering() {
@@ -15,8 +15,28 @@ export default function Administrering() {
     const [formValues, setFormValues] = useState<any>({name: '', code: '', access: ''}); /* values for pop up form */
     const [inputType, setInputType] = useState<string>('password'); /* for "se kode" button */
     const [inputTypeToggle, setInputTypeToggle] = useState<boolean>(true); /* for "se kode" button */
+    const [admin, setAdmin] = useState<boolean>(false);
 
     // authorization
+
+        const fetchUser = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://localhost:5000/auth/home', {
+                headers: {
+                "Authorization" : `Bearer ${token}`
+                }
+            });
+            if (response.data.user.Permission === "admin"){
+                setAdmin(true);
+            } else {
+                setAdmin(false);
+            }
+            return admin;
+        } catch(error) {
+            redirect('/logg-inn', RedirectType.replace);
+        }
+    };
     useEffect(() => {
         fetchUser();
     }, []);
@@ -45,12 +65,12 @@ export default function Administrering() {
     };
 
     return(
-        <div className={`${admin ? 'grid' : 'grid'} grid-cols-4 auto-rows-auto`}>
+        <div className={`${admin ? 'grid' : 'hidden'} grid-cols-4 auto-rows-auto`}>
             <div className="col-span-5 row-span-1">
                 <Header />
             </div>
             <div className="col-span-1 row-start-2 row-end-3">
-                <Nav location="adgangskontroll" />
+                <Nav location="adgangskontroll" admin={true} />
             </div>
             {/* pop up */}
             <div className={`background-popup ${isOpen ? 'open' : ''}`}>
