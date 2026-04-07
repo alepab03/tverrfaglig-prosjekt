@@ -37,6 +37,23 @@ export default function Home() {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  /* adgangs logg data */
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/auth/access-log');
+      if (response.data.log) {
+        setLogData(response.data.log);
+      }
+      console.log(response);
+    } catch(error) {
+      console.log('failed to fetch data', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [logData]);
   
   /* søkefunksjon */
   const setTableRowRef = (e: HTMLTableRowElement | null, index: number ) => {
@@ -108,6 +125,7 @@ export default function Home() {
     return avatarColors[Math.abs(hash) % avatarColors.length];
   };
 
+
   const today = logData.filter(d => d.date === new Date().toISOString().slice(0, 10)).length;
   const uniqueCards = new Set(logData.map(d => d.card)).size;
 
@@ -120,7 +138,7 @@ export default function Home() {
         <Nav location="dashboard" admin={admin} />
       </div>
 
-      <div className="sm:col-span-3 col-span-5 px-5 py-20">
+      <div className="sm:col-span-3 col-span-5 px-5 pt-20">
 
         {/* Page header */}
         <div className="flex items-start justify-between mb-6">
@@ -189,7 +207,7 @@ export default function Home() {
         </div>
 
         {/* Table */}
-        <div className="bg-white border border-gray-200 rounded-b-xl overflow-hidden">
+        <div className="bg-white border border-gray-200 rounded-b-xl overflow-hidden overflow-y-scroll h-[35vh]">
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
@@ -201,31 +219,26 @@ export default function Home() {
             </thead>
             <tbody>
               {logData.map((data: any, index: number) => {
-                const [bg, fg] = avatarColor(data.name);
-                const ini = initials(data.name);
+                //const [bg, fg] = avatarColor(data.name);
+                //const ini = initials(data.name);
                 return (
                   <tr
                     key={index}
                     ref={(e) => setTableRowRef(e, index)}
                     className="border-b border-gray-100 last:border-none hover:bg-gray-50 transition-colors"
                   >
-                    <td className="px-4 py-3 text-sm text-gray-600 font-mono">{data.date}</td>
-                    <td className="px-4 py-3">
-                      <span className="text-sm text-gray-600 font-mono">{data.time}</span>
+                    <td className="px-4 py-3 text-sm text-gray-600 font-mono">{data.created_at?.slice(0, 10)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 font-mono">
+                      {data.created_at?.slice(11, 19)}
                     </td>
                     <td className="px-4 py-3">
                       <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-2 py-1 rounded-md">
-                        #{data.card}
+                        {data.kortId}
                       </span>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
-                          style={{ backgroundColor: bg, color: fg }}
-                        >
-                          {ini}
-                        </div>
+                        
                         <span className="text-sm font-medium text-(--green)">{data.name}</span>
                       </div>
                     </td>

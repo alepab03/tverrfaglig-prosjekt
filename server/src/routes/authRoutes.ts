@@ -102,4 +102,15 @@ router.post('/edit-user', async (request, response) => {
         return response.status(500).json({message: 'server error'});
     }
 });
+
+router.get('/access-log', async (request, response) => {
+    try {
+        const db = await connectToDB();
+        const [rows] = await db.query('SELECT * FROM access_log');
+
+        return response.status(201).json({log: rows});
+    } catch(error) {
+        return response.status(500).json({message: 'server error'});
+    }
+});
 export default router;
