@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Header() {
+export default function Header(props: any) {
 
     const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -12,11 +12,11 @@ export default function Header() {
         <>
             <div className="bg-(--green) w-full h-15 sm:h-[13vh] flex flex-row items-center justify-between px-10">
   
-                <div className="flex items-center gap-3">
-                    <img src="/bilder/Logo.png" alt="Logo" className="h-17" />
-                    <a href="/"><h4 className="text-white font-bold ml-10">Adgangskontroll</h4></a> {/* midlertidig navn */}
+                <div className="flex justify-between w-1/1 sm:items-center sm:gap-3">
+                    <img src="/bilder/Logo.png" alt="Logo" className="h-10 sm:h-17" />
+                    <a href="/"><h4 className="text-white font-bold ml-10 sm:block hidden">Adgangskontroll</h4></a> {/* midlertidig navn */}
                     {/* hamburger icon */}
-                    <div className={`inline-block mr-9 sm:hidden ${isActive ? 'change' : ''}`} onClick={handleNavToggle}> 
+                    <div className={` sm:hidden ${isActive ? 'change' : ''} ${props.admin ? 'inline-block' : 'hidden'}`} onClick={handleNavToggle}> 
                         <div className="bar1 bg-white"></div>
                         <div className="bar2 bg-white"></div>
                         <div className="bar3 bg-white"></div>

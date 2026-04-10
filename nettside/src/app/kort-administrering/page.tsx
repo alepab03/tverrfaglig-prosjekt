@@ -65,9 +65,9 @@ export default function Administrering() {
     };
 
     return(
-        <div className={`${admin ? 'grid' : 'hidden'} grid-cols-4 auto-rows-auto`}>
+        <div className={`${admin ? 'sm:grid' : 'hidden'} sm:grid-cols-5 flex flex-col auto-rows-auto overflow-y-hidden`}>
             <div className="col-span-5 row-span-1">
-                <Header />
+                <Header admin={admin}/>
             </div>
             <div className="col-span-1 row-start-2 row-end-3">
                 <Nav location="adgangskontroll" admin={true} />
@@ -137,7 +137,7 @@ export default function Administrering() {
             </div>
 
             {/* tabell */}
-            <div className="col-span-3 flex flex-col mt-10 px-6">
+            <div className="col-span-3 flex flex-col mt-10 sm:items-start items-center sm:px-6">
                 <div className="card-table">
                     <div className="mb-4">
                         <h2 className="text-xl font-semibold text-(--green)">Adgangskontroll</h2>
@@ -190,12 +190,12 @@ export default function Administrering() {
                                 </td>
 
                                 <td className="px-4 py-3">
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex sm:flex-row flex-col items-center gap-2">
                                     <input
                                         type={type}
                                         value={data.code}
                                         readOnly
-                                        className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md w-16 outline-none"
+                                        className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md w-11 sm:w-16 outline-none"
                                     />
                                     <button
                                         onClick={handleTypeToggle}

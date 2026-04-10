@@ -104,7 +104,7 @@ export default function Home() {
       }
     });
   };
-
+  /* not currently in use
   const initials = (name: string) => {
     const parts = name.trim().split(' ');
     return parts.length > 1
@@ -123,33 +123,33 @@ export default function Home() {
     let hash = 0;
     for (const c of name) hash = (hash * 31 + c.charCodeAt(0)) & 0xffffffff;
     return avatarColors[Math.abs(hash) % avatarColors.length];
-  };
+  }; */
 
 
   const today = logData.filter(d => d.date = new Date().toISOString().slice(0, 10)).length;
   const uniqueCards = new Set(logData.map(d => d.card)).size;
 
   return (
-    <div className="grid grid-cols-5 auto-rows-auto min-h-screen" style={{ background: 'var(--background)' }}>
+    <div className="sm:grid flex flex-col sm:grid-cols-5 auto-rows-auto overflow-y-hidden min-h-screen" style={{ background: 'var(--background)' }}>
       <div className="col-span-5 row-span-1">
-        <Header />
+        <Header admin={admin}/>
       </div>
       <div className="col-span-1 row-span-1">
         <Nav location="dashboard" admin={admin} />
       </div>
 
-      <div className="sm:col-span-3 col-span-5 px-5 pt-20">
+      <div className="sm:col-span-3 col-span-5 sm:px-5 sm:pt-20">
 
         {/* Page header */}
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-xl font-semibold text---green)">Adgangs logg</h2>
-            <p className="text-sm text-gray-400 mt-0.5">Oversikt over alle registrerte adganger</p>
+            <h2 className="sm:text-xl m-3 sm:m-0 font-semibold text---green)">Adgangs logg</h2>
+            <p className="sm:text-sm m-2 ml-3 sm:m-0 text-gray-400 mt-0.5">Oversikt over alle registrerte adganger</p>
           </div>
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-3 sm:gap-3 mb-6 pl-2 pr-2">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Totalt</p>
             <p className="text-2xl font-bold text-(--green)">{logData.length}</p>

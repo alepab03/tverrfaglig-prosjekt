@@ -53,7 +53,7 @@ export default function Brukeradministrering() {
 
     useEffect(() => {
         fetchUsers();
-    }, [userData]); // should depend on something so it updates every time a change is made, unless every time i close a popup the window does a reload
+    }, [userData]);
 
   const handleFormValueChange = (e: any) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -96,9 +96,9 @@ export default function Brukeradministrering() {
     console.log(admin);
     return(
         <div>
-            <div className={`grid-cols-5 grid-rows-auto ${admin ? 'grid' : 'hidden'}`}>
+            <div className={`sm:grid-cols-5 flex flex-col sm:grid-rows-auto ${admin ? 'sm:grid' : 'hidden'}`}>
                 <div className="col-span-5 row-span-1">
-                    <Header />
+                    <Header admin={admin} />
                 </div>
                 <div className="col-span-1">
                     <Nav location="brukeradministrering" admin={true} />
@@ -135,7 +135,7 @@ export default function Brukeradministrering() {
                     </div>
                 </div>
                 <div className={`background-popup ${isEditPopUpOpen ? 'open' : ''}`}>
-                    <div className="flex flex-col items-center justify-center w-[30vw] h-[35vh] rounded-[0.313rem] bg-(--background) relative">
+                    <div className="flex flex-col items-center justify-center w-[90vw] sm:w-[30vw] h-[35vh] rounded-[0.313rem] bg-(--background) relative">
                         <h2 className="font-bold">Rediger bruker</h2>
                         <button onClick={() => handlePopUpOpen(1)} className="absolute top-0 right-0 mr-4 mt-1 text-4xl font-bold cursor-pointer">x</button>
                         <form onSubmit={handleUserEdit}>
@@ -159,7 +159,7 @@ export default function Brukeradministrering() {
                     </div>
                 </div>
                 {/* Content */}
-                <div className="col-span-3 flex flex-col mt-10 px-6">
+                <div className="col-span-3 flex flex-col mt-10 sm:items-start items-center sm:px-6">
                   <div className="card-table">
                     <div className="mb-4">
                       <h2 className="text-xl font-semibold text-(--green)">
