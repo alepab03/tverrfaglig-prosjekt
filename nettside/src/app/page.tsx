@@ -45,7 +45,6 @@ export default function Home() {
       if (response.data.log) {
         setLogData(response.data.log);
       }
-      console.log(response);
     } catch(error) {
       console.log('failed to fetch data', error);
     }
@@ -126,8 +125,12 @@ export default function Home() {
   }; */
 
 
-  const today = logData.filter(d => d.date = new Date().toISOString().slice(0, 10)).length;
+  const [today, setToday] = useState<any>(); 
   const uniqueCards = new Set(logData.map(d => d.card)).size;
+
+  useEffect(() => {
+    setToday(logData.filter(d => d.created_at?.slice(0, 10) === new Date().toISOString().slice(0, 10)).length);
+  }, [logData]);
 
   return (
     <div className="sm:grid flex flex-col sm:grid-cols-5 auto-rows-auto overflow-y-hidden min-h-screen" style={{ background: 'var(--background)' }}>
