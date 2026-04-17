@@ -6,8 +6,7 @@ import axios from 'axios';
 import { redirect, RedirectType } from "next/navigation";
 
 export default function Home() {
-  /* her skal data inn for loggen (logData), midlertidige verdier for testing i array */
-  const [logData, setLogData] = useState<any[]>([{date: '2026-03-17', time: '09:28:45', card: 1, name: "navn navnesen" }, {date: '2026-03-17', time: '13:06:34', card: 2, name: "Trine" }]);
+  const [logData, setLogData] = useState<any[]>([]);
   const tableRowRefs = useRef<(HTMLTableRowElement | null) []>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [categoryValue, setCategoryValue] = useState<string>('');
