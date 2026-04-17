@@ -4,7 +4,8 @@ Vi løste oppgaven med å lage denne nettsiden hvor man kan se logg på adganger
 
 #### Teknologi brukt i prosjektet:
 Frontend: Next.js med TypeScript og TailwingCSS, Axios  
-Backend: Node.js med TypeScript, ts-node, Express, CORS, MySQL2, bcrypt, JSON Web Token, nodemon
+Backend: Node.js med TypeScript, ts-node, Express, CORS, MySQL2, bcrypt, JSON Web Token, nodemon  
+Database: MySQL på en Ubuntu server
 
 ### For å kjøre prosjektet på egen maskin:
 #### !! Ha begge terminaler oppe og kjørende samtidig !!
