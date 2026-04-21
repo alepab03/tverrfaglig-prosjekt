@@ -93,7 +93,7 @@ export default function Brukeradministrering() {
             console.log('Failed to edit user', error);
         }
     };
-    console.log(admin);
+   
     return(
         <div>
             <div className={`sm:grid-cols-5 flex flex-col sm:grid-rows-auto ${admin ? 'sm:grid' : 'hidden'}`}>
